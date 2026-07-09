@@ -37,7 +37,7 @@ const emit = defineEmits<{
 const statusOptions = [
   { id: "todo", label: "To Do", color: "bg-gray-400" },
   { id: "in-progress", label: "In Progress", color: "bg-sky-500" },
-  { id: "completed", label: "Complete", color: "bg-emerald-500" },
+  { id: "completed", label: "Complete", color: "bg-gray-900" },
 ] as const;
 
 const status = ref<Card["status"]>(props.card.status ?? "todo");
@@ -109,7 +109,7 @@ function addAttachment() {
       id: `a-${Date.now()}`,
       name: `Attachment ${index}`,
       meta: "Added just now",
-      thumbnail: "from-emerald-300 to-teal-500",
+      thumbnail: "from-gray-400 to-teal-500",
     },
   ];
 }
@@ -117,11 +117,11 @@ function addAttachment() {
 
 <template>
   <div class="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto bg-black/30 p-2 py-3 sm:p-4 sm:py-10" @click="emit('close')">
-    <div class="w-full max-w-lg rounded-xl bg-white shadow-xl sm:rounded-2xl" @click.stop>
-      <div class="flex items-center justify-between border-b border-gray-100 px-3 py-3 sm:px-5 sm:py-3.5">
+    <div class="w-full max-w-lg rounded-md bg-white shadow-xl sm:rounded-md" @click.stop>
+      <div class="flex items-center justify-between border-b border-gray-200 px-3 py-3 sm:px-5 sm:py-3.5">
         <Dropdown>
           <template #trigger="{ toggle }">
-            <button type="button" :class="['flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[13px] font-medium text-white', currentStatus.color]" @click="toggle">
+            <button type="button" :class="['flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[13px] font-medium text-white', currentStatus.color]" @click="toggle">
               {{ currentStatus.label }}
               <ChevronDown :size="14" />
             </button>
@@ -137,7 +137,7 @@ function addAttachment() {
         <div class="flex items-center gap-1">
           <Dropdown align="right">
             <template #trigger="{ toggle }">
-              <button type="button" aria-label="More options" class="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-50" @click="toggle">
+              <button type="button" aria-label="More options" class="flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-gray-50" @click="toggle">
                 <MoreHorizontal :size="17" />
               </button>
             </template>
@@ -152,11 +152,11 @@ function addAttachment() {
               />
             </template>
           </Dropdown>
-          <button type="button" :aria-label="linkCopied ? 'Link copied' : 'Copy link'" :class="['flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-50', linkCopied ? 'text-emerald-500' : 'text-gray-400']" @click="copyLink">
+          <button type="button" :aria-label="linkCopied ? 'Link copied' : 'Copy link'" :class="['flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-50', linkCopied ? 'text-gray-900' : 'text-gray-400']" @click="copyLink">
             <Check v-if="linkCopied" :size="16" />
             <Link2 v-else :size="16" />
           </button>
-          <button type="button" aria-label="Close" class="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-50" @click="emit('close')">
+          <button type="button" aria-label="Close" class="flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-gray-50" @click="emit('close')">
             <X :size="18" />
           </button>
         </div>
@@ -195,19 +195,19 @@ function addAttachment() {
             v-model="description"
             rows="3"
             placeholder="Add a more detailed description..."
-            class="w-full resize-none rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-[13.5px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-emerald-300"
+            class="w-full resize-none rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-[13.5px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-gray-400"
           />
         </div>
 
         <div class="mb-5">
           <p class="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-gray-400">Checklist ({{ progress }}%)</p>
           <div class="mb-2 h-1.5 w-full rounded-full bg-gray-100">
-            <div class="h-1.5 rounded-full bg-emerald-400 transition-all" :style="{ width: `${progress}%` }" />
+            <div class="h-1.5 rounded-full bg-gray-700 transition-all" :style="{ width: `${progress}%` }" />
           </div>
           <div class="flex flex-col">
-            <div v-for="item in checklist" :key="item.id" class="group flex items-center gap-2.5 rounded-lg px-1 py-1.5 hover:bg-gray-50">
+            <div v-for="item in checklist" :key="item.id" class="group flex items-center gap-2.5 rounded-md px-1 py-1.5 hover:bg-gray-50">
               <button type="button" aria-label="Toggle done" @click="toggleChecklistItem(item.id)">
-                <span v-if="item.done" class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400 text-white">
+                <span v-if="item.done" class="flex h-5 w-5 items-center justify-center rounded-full bg-gray-700 text-white">
                   <Check :size="12" :stroke-width="3" />
                 </span>
                 <Circle v-else :size="18" class="text-gray-300" />
@@ -222,10 +222,10 @@ function addAttachment() {
             <input
               v-model="newChecklistText"
               placeholder="Add checklist item..."
-              class="flex-1 rounded-lg border border-gray-100 bg-gray-50 px-3 py-1.5 text-[13px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-emerald-300"
+              class="flex-1 rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-[13px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-gray-400"
               @keydown.enter="addChecklistItem"
             />
-            <button type="button" class="flex items-center justify-center gap-1 rounded-lg bg-emerald-500 px-3 py-1.5 text-[13px] font-medium text-white hover:bg-emerald-600" @click="addChecklistItem">
+            <button type="button" class="flex items-center justify-center gap-1 rounded-md bg-gray-900 px-3 py-1.5 text-[13px] font-medium text-white hover:bg-gray-800" @click="addChecklistItem">
               <Plus :size="14" />
               Add
             </button>
@@ -235,7 +235,7 @@ function addAttachment() {
         <div v-if="attachments.length" class="mb-5">
           <p class="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-gray-400">Attachments</p>
           <div class="flex flex-col gap-2">
-            <div v-for="file in attachments" :key="file.id" class="flex items-center gap-3 rounded-lg border border-gray-100 p-2">
+            <div v-for="file in attachments" :key="file.id" class="flex items-center gap-3 rounded-md border border-gray-200 p-2">
               <div :class="['h-10 w-10 shrink-0 rounded-md bg-linear-to-br', file.thumbnail]" />
               <div class="min-w-0 flex-1">
                 <p class="truncate text-[13px] font-medium text-gray-700">{{ file.name }}</p>
@@ -243,19 +243,19 @@ function addAttachment() {
               </div>
             </div>
           </div>
-          <button type="button" class="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-emerald-600 hover:text-emerald-700" @click="addAttachment">
+          <button type="button" class="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-gray-800 hover:text-gray-700" @click="addAttachment">
             <Plus :size="15" />
             Add Attachment
           </button>
         </div>
 
         <div>
-          <div class="mb-3 flex items-center gap-4 border-b border-gray-100">
+          <div class="mb-3 flex items-center gap-4 border-b border-gray-200">
             <button
               v-for="item in ['comments', 'activity'] as const"
               :key="item"
               type="button"
-              :class="['-mb-px border-b-2 pb-2 text-[13px] font-medium capitalize transition-colors', tab === item ? 'border-emerald-500 text-emerald-600' : 'border-transparent text-gray-400 hover:text-gray-600']"
+              :class="['-mb-px border-b-2 pb-2 text-[13px] font-medium capitalize transition-colors', tab === item ? 'border-gray-900 text-gray-800' : 'border-transparent text-gray-400 hover:text-gray-600']"
               @click="tab = item"
             >
               {{ item }}
@@ -265,14 +265,14 @@ function addAttachment() {
           <template v-if="tab === 'comments'">
             <div class="mb-4 flex items-start gap-2.5">
               <PersonAvatar :person="{ name: 'You', initials: 'AT', gradient: 'from-rose-400 to-orange-400', image: '/assets/image1.png' }" :size="30" />
-              <div class="flex-1 rounded-xl border border-gray-100 bg-gray-50 p-2">
+              <div class="flex-1 rounded-md border border-gray-200 bg-gray-50 p-2">
                 <textarea v-model="commentDraft" placeholder="Add a comment..." rows="2" class="w-full resize-none bg-transparent text-[13px] text-gray-600 outline-none placeholder:text-gray-400" />
                 <div class="flex items-center justify-between pt-1">
                   <div class="flex items-center gap-2 text-gray-400">
                     <button type="button" aria-label="Attach" class="hover:text-gray-600"><Paperclip :size="15" /></button>
                     <button type="button" aria-label="Emoji" class="hover:text-gray-600"><Smile :size="15" /></button>
                   </div>
-                  <button type="button" aria-label="Send comment" class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500 text-white hover:bg-emerald-600" @click="submitComment">
+                  <button type="button" aria-label="Send comment" class="flex h-7 w-7 items-center justify-center rounded-md bg-gray-900 text-white hover:bg-gray-800" @click="submitComment">
                     <Send :size="13" />
                   </button>
                 </div>

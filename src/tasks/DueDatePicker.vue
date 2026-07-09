@@ -37,13 +37,13 @@ function shiftMonth(delta: number) {
 <template>
   <Dropdown panel-class="w-72">
     <template #trigger="{ toggle }">
-      <button type="button" class="flex items-center gap-2 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-[13px] text-gray-600 hover:bg-gray-100" @click="toggle">
+      <button type="button" class="flex items-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-[13px] text-gray-600 hover:bg-gray-100" @click="toggle">
         <CalendarDays :size="14" class="text-gray-400" />
         {{ value ?? "Set due date" }}
       </button>
     </template>
     <template #default="{ close }">
-      <div class="w-72 rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
+      <div class="w-72 rounded-md border border-gray-200 bg-white p-3 shadow-lg">
         <div class="mb-2 flex items-center justify-between">
           <button type="button" aria-label="Previous month" class="rounded-md p-1 text-gray-400 hover:bg-gray-50" @click="shiftMonth(-1)">
             <ChevronLeft :size="16" />
@@ -64,7 +64,7 @@ function shiftMonth(delta: number) {
             :disabled="day === null"
             :class="[
               'mx-auto flex h-7 w-7 items-center justify-center rounded-full',
-              day === null ? 'invisible' : day === selectedDay ? 'bg-emerald-500 font-semibold text-white' : 'text-gray-600 hover:bg-gray-50',
+              day === null ? 'invisible' : day === selectedDay ? 'bg-gray-900 font-semibold text-white' : 'text-gray-600 hover:bg-gray-50',
             ]"
             @click="selectedDay = day"
           >
@@ -73,13 +73,13 @@ function shiftMonth(delta: number) {
         </div>
         <div class="mt-3">
           <label class="mb-1 block text-[11px] font-medium text-gray-400">Time</label>
-          <input v-model="time" class="w-full rounded-lg border border-gray-100 bg-gray-50 px-3 py-1.5 text-[13px] text-gray-600 outline-none focus:ring-1 focus:ring-emerald-300" />
+          <input v-model="time" class="w-full rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-[13px] text-gray-600 outline-none focus:ring-1 focus:ring-gray-400" />
         </div>
         <div class="mt-3 flex items-center justify-between">
           <button type="button" class="text-[12.5px] font-medium text-gray-400 hover:text-gray-600" @click="value = undefined; close()">Clear due date</button>
           <button
             type="button"
-            class="rounded-lg bg-emerald-500 px-3 py-1.5 text-[12.5px] font-medium text-white hover:bg-emerald-600"
+            class="rounded-md bg-gray-900 px-3 py-1.5 text-[12.5px] font-medium text-white hover:bg-gray-800"
             @click="if (selectedDay) value = `${months[viewMonth].slice(0, 3)} ${selectedDay}, ${viewYear}, ${time}`; close()"
           >
             Set due date

@@ -32,21 +32,21 @@ function toggle(id: string) {
         </button>
       </template>
       <template #default="{ close }">
-        <div class="w-60 rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
+        <div class="w-60 rounded-md border border-gray-200 bg-white p-3 shadow-lg">
           <p class="mb-2 text-[13px] font-semibold text-gray-700">Labels</p>
           <div class="relative mb-2">
             <Search :size="14" class="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input v-model="query" autofocus placeholder="Search label..." class="w-full rounded-lg bg-gray-50 py-1.5 pl-8 pr-3 text-[13px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-emerald-300" />
+            <input v-model="query" autofocus placeholder="Search label..." class="w-full rounded-md bg-gray-50 py-1.5 pl-8 pr-3 text-[13px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-gray-400" />
           </div>
           <div class="mb-2 flex max-h-48 flex-col overflow-y-auto">
-            <button v-for="label in filtered" :key="label.id" type="button" class="flex items-center gap-2.5 rounded-lg px-1.5 py-1.5 text-left hover:bg-gray-50" @click="toggle(label.id)">
+            <button v-for="label in filtered" :key="label.id" type="button" class="flex items-center gap-2.5 rounded-md px-1.5 py-1.5 text-left hover:bg-gray-50" @click="toggle(label.id)">
               <span :class="['h-3 w-3 rounded-full', label.color]" />
               <span class="flex-1 text-[13px] text-gray-600">{{ label.name }}</span>
-              <Check v-if="selectedIds.includes(label.id)" :size="15" class="text-emerald-500" />
+              <Check v-if="selectedIds.includes(label.id)" :size="15" class="text-gray-900" />
             </button>
             <p v-if="filtered.length === 0" class="px-1.5 py-2 text-[13px] text-gray-400">No labels found.</p>
           </div>
-          <button type="button" class="w-full rounded-lg bg-emerald-500 py-2 text-[13px] font-medium text-white hover:bg-emerald-600" @click="close(); emit('manageLabels')">
+          <button type="button" class="w-full rounded-md bg-gray-900 py-2 text-[13px] font-medium text-white hover:bg-gray-800" @click="close(); emit('manageLabels')">
             Add New Label
           </button>
         </div>

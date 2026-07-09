@@ -9,18 +9,16 @@ const emit = defineEmits<{ select: [action: AddMenuAction] }>();
 
 const items = [
   { key: "task", label: "Task", icon: ClipboardList },
-  { key: "board", label: "Board", icon: LayoutGrid },
+  { key: "board", label: "Column", icon: LayoutGrid },
   { key: "project", label: "Project", icon: FolderKanban },
-  { key: "invite", label: "Invite", icon: UserPlus },
+  { key: "invite", label: "Invite member", icon: UserPlus },
 ] as const;
 </script>
 
 <template>
   <Dropdown align="right">
     <template #trigger="{ toggle }">
-      <button type="button" class="flex items-center gap-1.5 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-600 sm:px-4" @click="toggle">
-        Add
-        <ChevronDown :size="15" />
+      <button type="button" class="flex items-center gap-1.5 rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-800 sm:px-4" @click="toggle">`r`n        New`r`n        <ChevronDown :size="15" />
       </button>
     </template>
     <template #default="{ close }">

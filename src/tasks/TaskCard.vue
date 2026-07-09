@@ -10,24 +10,24 @@ const progress = computed(() =>
 </script>
 
 <template>
-  <div class="cursor-pointer rounded-2xl border border-gray-100 bg-white p-3.5 shadow-sm transition-shadow hover:shadow-md">
+  <div class="cursor-pointer rounded-md border border-gray-200 bg-white p-3 transition-colors hover:border-gray-300">
     <div class="mb-3 flex items-center gap-2">
       <div class="flex gap-1">
-        <span v-for="(color, index) in card.tagColors" :key="index" :class="['h-1.5 w-6 rounded-full', color]" />
+        <span v-for="(color, index) in card.tagColors" :key="index" :class="['h-1.5 w-5 rounded-sm', color]" />
       </div>
-      <div class="ml-auto flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-500">
+      <div class="ml-auto flex items-center gap-1 rounded border border-gray-200 bg-white px-2 py-1 text-[11px] text-gray-500">
         <CalendarDays :size="12" />
         {{ card.date }}
       </div>
     </div>
 
-    <div v-if="card.image" class="mb-3 h-28 w-full overflow-hidden rounded-xl">
+    <div v-if="card.image" class="mb-3 h-28 w-full overflow-hidden rounded-md">
       <img v-if="card.image.startsWith('/')" :src="card.image" :alt="card.title" class="h-full w-full object-cover" />
       <div v-else :class="['h-full w-full bg-linear-to-br', card.image]" />
     </div>
 
     <div v-if="card.images" class="mb-3 grid grid-cols-3 gap-1.5">
-      <div v-for="(image, index) in card.images" :key="index" class="h-16 overflow-hidden rounded-lg">
+      <div v-for="(image, index) in card.images" :key="index" class="h-16 overflow-hidden rounded-md">
         <img v-if="image.startsWith('/')" :src="image" :alt="`${card.title} image ${index + 1}`" class="h-full w-full object-cover" />
         <div v-else :class="['h-full w-full bg-linear-to-br', image]" />
       </div>
@@ -39,16 +39,16 @@ const progress = computed(() =>
     <div v-if="card.subtasks" class="mb-3">
       <div class="mb-1.5 flex items-center justify-between text-[11px] text-gray-400">
         <span>SUB-TASKS: {{ card.subtasks.done }}/{{ card.subtasks.total }}</span>
-        <span class="font-medium text-emerald-500">{{ progress }}%</span>
+        <span class="font-medium text-gray-700">{{ progress }}%</span>
       </div>
-      <div class="h-1.5 w-full rounded-full bg-gray-100">
-        <div class="h-1.5 rounded-full bg-emerald-400" :style="{ width: `${progress}%` }" />
+      <div class="h-1.5 w-full rounded-full bg-gray-200">
+        <div class="h-1.5 rounded-full bg-gray-700" :style="{ width: `${progress}%` }" />
       </div>
     </div>
 
-    <div v-if="card.subtasks?.items" class="mb-3 flex flex-col gap-1.5 rounded-xl bg-gray-50 p-2.5">
+    <div v-if="card.subtasks?.items" class="mb-3 flex flex-col gap-1.5 rounded-md bg-gray-50 p-2.5">
       <div v-for="item in card.subtasks.items" :key="item.title" class="flex items-center gap-2 text-[12.5px] text-gray-500">
-        <span v-if="item.done" class="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-400 text-white">
+        <span v-if="item.done" class="flex h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white">
           <Check :size="10" :stroke-width="3" />
         </span>
         <Circle v-else :size="16" class="text-gray-300" />

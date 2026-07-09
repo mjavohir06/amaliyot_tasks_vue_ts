@@ -29,10 +29,10 @@ function done() {
 
 <template>
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
-    <div class="w-full max-w-md rounded-2xl bg-white p-5 shadow-xl">
+    <div class="w-full max-w-md rounded-md bg-white p-5 shadow-xl">
       <div class="mb-4 flex items-center justify-between">
         <h2 class="text-lg font-semibold text-gray-800">Add New Label</h2>
-        <button type="button" aria-label="Close" class="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-50" @click="emit('close')">
+        <button type="button" aria-label="Close" class="flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-gray-50" @click="emit('close')">
           <X :size="18" />
         </button>
       </div>
@@ -43,7 +43,7 @@ function done() {
               <button type="button" aria-label="Change color" :class="['h-6 w-6 shrink-0 rounded-full ring-1 ring-inset ring-black/5', row.color]" @click="toggle" />
             </template>
             <template #default="{ close }">
-              <div class="w-44 rounded-xl border border-gray-100 bg-white p-3 shadow-lg">
+              <div class="w-44 rounded-md border border-gray-200 bg-white p-3 shadow-lg">
                 <p class="mb-2 text-[12px] font-semibold text-gray-500">Change Color</p>
                 <div class="grid grid-cols-5 gap-2">
                   <button
@@ -58,20 +58,20 @@ function done() {
               </div>
             </template>
           </Dropdown>
-          <input v-model="row.name" placeholder="Type an name label..." class="flex-1 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2 text-[13px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-emerald-300" />
-          <button type="button" aria-label="Duplicate label" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-50" @click="duplicateRow(row)">
+          <input v-model="row.name" placeholder="Type an name label..." class="flex-1 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-[13px] text-gray-600 outline-none placeholder:text-gray-400 focus:ring-1 focus:ring-gray-400" />
+          <button type="button" aria-label="Duplicate label" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-400 hover:bg-gray-50" @click="duplicateRow(row)">
             <Copy :size="15" />
           </button>
-          <button type="button" aria-label="Delete label" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-400 hover:bg-red-50 hover:text-red-500" @click="rows = rows.filter((item) => item.id !== row.id)">
+          <button type="button" aria-label="Delete label" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-400 hover:bg-red-50 hover:text-red-500" @click="rows = rows.filter((item) => item.id !== row.id)">
             <Trash2 :size="15" />
           </button>
         </div>
       </div>
-      <button type="button" class="mb-4 flex items-center gap-1.5 text-[13px] font-medium text-emerald-600 hover:text-emerald-700" @click="addRow">
+      <button type="button" class="mb-4 flex items-center gap-1.5 text-[13px] font-medium text-gray-800 hover:text-gray-700" @click="addRow">
         <Plus :size="15" />
         Add Label
       </button>
-      <button type="button" class="w-full rounded-lg bg-emerald-500 py-2.5 text-sm font-medium text-white hover:bg-emerald-600" @click="done">Done</button>
+      <button type="button" class="w-full rounded-md bg-gray-900 py-2.5 text-sm font-medium text-white hover:bg-gray-800" @click="done">Done</button>
     </div>
   </div>
 </template>
